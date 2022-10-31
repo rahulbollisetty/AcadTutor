@@ -24,8 +24,8 @@ SECRET_KEY = '4he2ne)2!s##)w)ia_a^=e8rz$ysn3ta-p926+lr+d68p@f-bu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1','.ngrok.io','localhost'] 
 
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'accounts',
 ]
 
 MIDDLEWARE = [
+    'corheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -101,8 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "accounts.CustomUser" 
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -122,10 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR,'build/static')
-# ]
-# STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'build/static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 # Base url to serve media files
 MEDIA_URL = '/media/'
@@ -141,7 +141,4 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication'
     ]
 }
-if not DEBUG:
-    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
-            "rest_framework.renderers.JSONRenderer",
-        )
+CORS_ORIGIN_ALLOW_ALL = True
