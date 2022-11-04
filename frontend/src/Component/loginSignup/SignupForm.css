@@ -1,0 +1,60 @@
+.wrapper{
+    width:28vw;
+    height:75vh;
+    margin: auto auto;
+    padding:1rem;
+    background-color:#ccc;
+}
+.slide-controls{
+    border: 1px solid red;
+    text-align: center;
+}
+.slide-controls input{
+    width:10rem;
+    padding:0.5rem;
+    font-size:1.1rem;
+    margin:auto 0.4rem;
+}
+.innerForm-container p{
+    text-align: center;
+}
+.innerForm-container{
+    height: max-content;
+    margin-top:0.7rem;
+    position: relative;
+    border: 1px solid red;
+}
+.innerForm-container form{
+    position: absolute;
+    width:100%;
+    top: 0%;
+    margin:auto auto;
+    border: 1px solid green;
+    transition:all 0.3s ease;
+}
+.innerForm-container form button{
+    margin:0.8rem auto;
+}
+select {
+    display: block;
+    background-image:none;
+    background-repeat:no-repeat;
+    background-position:300px;
+    width:20rem;
+    padding:0.6rem;
+    color:rgba(0, 0, 0, 0.9);;
+    background-color:white;
+    border:1px solid rgba(0, 0, 0, 0.2);
+    font-size:1rem;
+    --webkit-appearance:none;
+    outline:none;
+    margin: 1.2rem auto;
+}
+.teacher_signup{
+   top: 0%;
+   left: -150%;
+}
+.student_signup{
+    top: 0%;
+    right:-150%;
+}

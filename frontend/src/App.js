@@ -5,12 +5,14 @@ import Navbar from "./Component/Navbar/Navbar";
 import { Route, Routes} from "react-router-dom";
 import ContentPage from "./Pages/ContentPage";
 import Home from "./Pages/Home";
+import SignUp from "./Pages/SignUp";
 import './App.css'
 
 const App = () =>{
   return (
     <div className="App">
-        <Home/>
+        {/* <Home/> */}
+        <SignUp/>
         {/* <Navbar menu={navItems} submenu={BranchSubmenu} /> */}
         <Routes>
           <Route path="/" exact component={Branch}></Route>
