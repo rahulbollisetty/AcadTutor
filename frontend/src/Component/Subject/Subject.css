@@ -36,4 +36,5 @@
   color: #fff;
   background-color: var(--color);
   border-radius: 0.2rem;
+  cursor:pointer;
 }

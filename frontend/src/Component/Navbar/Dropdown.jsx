@@ -15,7 +15,7 @@ function Dropdown(props) {
           return (
             <li key={item.id}>
               <Link
-                to={item.path}
+                to={`/branch${item.path}`}
                 onClick={() => setDropdown(false)}
               >
                 {item.title}
