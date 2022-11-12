@@ -10,6 +10,10 @@ on:
       - main
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: backend
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,7 +28,6 @@ jobs:
 
       - name: Create and start virtual environment
         run: |
-          cd backend
           python -m venv venv
           source venv/bin/activate
       
