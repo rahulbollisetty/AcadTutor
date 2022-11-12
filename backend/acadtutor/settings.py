@@ -24,7 +24,7 @@ SECRET_KEY = '4he2ne)2!s##)w)ia_a^=e8rz$ysn3ta-p926+lr+d68p@f-bu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1','.ngrok.io','localhost'] 
+ALLOWED_HOSTS = ['127.0.0.1','.ngrok.io','localhost','acadtutor.azurewebsites.net'] 
 
 
 
