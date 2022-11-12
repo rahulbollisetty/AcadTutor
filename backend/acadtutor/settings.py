@@ -55,14 +55,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'acadtutor.urls'
 
-CORS_URLS_REGEX = r"^/api/.*"
 CORS_ALLOWED_ORIGINS = []
 
 if DEBUG:
-    CORS_ALLOWED_ORIGINS += [
-        'http://localhost:3000',
-        'https://localhost:3000',
-    ]
+    CORS_ORIGIN_ALLOW_ALL = True
+
 
 TEMPLATES = [
     {
