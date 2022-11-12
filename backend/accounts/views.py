@@ -10,7 +10,7 @@ from django.http import HttpResponse
 @permission_classes([permissions.AllowAny])
 @api_view(('GET',))
 def home(request):
-    return HttpResponse("hello")
+    return HttpResponse("hello there")
 
 @ensure_csrf_cookie
 @permission_classes([permissions.AllowAny])
