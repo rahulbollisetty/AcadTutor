@@ -6,7 +6,7 @@ import Trashing from '../Component/UnitsContent/Trashing'
 import { useNavigate, useParams } from 'react-router-dom' ;
 const ContentPage = () => {
   const {location} = useParams()
-  return (
+  return ( 
     <section className='content_page'>
         <Navbar2/>
         <Trashing/>

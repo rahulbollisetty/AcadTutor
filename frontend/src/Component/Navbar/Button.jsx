@@ -5,15 +5,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import "./Button.css";
 
 const Button = (props) => {
-  const {showhide} = useSelector(state => state.ShowHideNavbar);
-  const dispatch = useDispatch()
-  console.log(showhide)
+  // const {showhide} = useSelector(state => state.ShowHideNavbar);
+  // const dispatch = useDispatch()
+  // console.log(showhide)
 
 
   if(props.title === "SignIn"){
     return(
     
-      <button className={props.cname}  >{props.title}</button>
+      <button className={props.cname} >{props.title}</button>
     
     )
   }

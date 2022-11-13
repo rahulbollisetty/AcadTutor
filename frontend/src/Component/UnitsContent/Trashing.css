@@ -1,4 +1,11 @@
 .location_container{
     width:100%;
     height:50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* border: 1px solid red; */
+    font-size:1.2rem;
+    margin:13px 0 30px;
+    padding:0 1.5rem;
 }
