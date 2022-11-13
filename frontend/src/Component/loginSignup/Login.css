@@ -1,0 +1,71 @@
+.LoginForm_Container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background:transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  } 
+  .Loginform_Wrapper {
+    position: relative;
+    min-width: 400px;
+    min-height: 300px;
+    background: white;
+    padding:1rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgba(0,0,0,0.2);
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+    animation: fadeInDown 0.8s;
+  }
+  .Loginform_Wrapper h2{
+    font-size:2.2em;
+    margin-top:1rem;
+  }
+  .Loginform_Wrapper form{
+    margin:1.3rem auto;
+  }
+  .Loginform_Wrapper form a{
+    text-decoration: none;
+    color:var(--color);
+    font-weight:400;
+
+  }
+  .Loginform_Wrapper form .FP{
+    line-height: 0%;
+    margin-top: 0%;
+}
+  .Loginform_Wrapper form p{
+        text-align: center;
+  }
+  .crossbtn{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    background-color:transparent;
+  }
+  .crossbtn svg{
+    width:1.7em;
+    height:1.7em;
+  }
+  
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

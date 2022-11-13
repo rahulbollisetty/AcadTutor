@@ -1,0 +1,15 @@
+
+.Formbutton{
+    display: block;
+    width:20rem;
+    margin:auto auto;
+}
+.Formbutton button{
+    width:100%;
+    padding:0.6rem;
+    margin:1.8rem auto;
+    color:#fff;
+    font-size:1.1rem;
+    font-weight: 600;
+    border:none;
+}
