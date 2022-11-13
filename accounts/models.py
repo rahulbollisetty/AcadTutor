@@ -1,3 +1,5 @@
+import uuid
+import base64
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
@@ -54,7 +56,21 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class HOD(models.model):
     branch = models.CharField(null=True,blank=True,max_length=10)
     college = models.CharField(null=True,blank=True,max_length=100)
-    access_key = models.IntegerField(max_length=6)
+    referral_code = models.IntegerField(max_length=6)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE,primary_key=True)
+
+    def get_absolute_url(self):
+        return u'/profile/show/%d' % self.id
+    def generate_verification_code(self):
+        return base64.urlsafe_b64encode(uuid.uuid1().bytes.encode("base64").rstrip())[:25]
+    def save(self, *args, **kwargs):
+        
+        if not self.pk:
+            self.referral_code = self.generate_verification_code()
+        elif not self.verification_code:
+            self.referral_code = self.generate_verification_code()
+
+        return super(HOD, self).save(*args, **kwargs)
 
 class user_type(models.Model):
     is_teach = models.BooleanField(default=False)
