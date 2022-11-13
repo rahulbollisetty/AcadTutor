@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.8.6",
-    "swiper": "^8.4.4"
-  }
-}
