@@ -1,24 +1,22 @@
-name : Push backend to frontend prod
+name: Push to backend_prod
 on:
-  push:
-    branches:
-      - main
+  push:	
+    branches:	
+      - master
     paths:
-      - 'backend'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'backend'
+      - './backend'
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  deploy:
+    name: Push to backend_prod
+    runs-on: ubuntu-latest    
     steps:
-    - name: Perform Checkout
-      uses: actions/checkout@v2
-    - name: pushing front end to production-frontend
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./backend
-        publish_branch: backend_prod
+    - uses: actions/checkout@master
+
+    - name: push to brach
+      uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: self
+        BRANCH: backend_prod
+        FOLDER: backend
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
