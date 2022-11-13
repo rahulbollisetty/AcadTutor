@@ -67,8 +67,7 @@ class HOD(models.model):
         
         if not self.pk:
             self.referral_code = self.generate_verification_code()
-        elif not self.verification_code:
-            self.referral_code = self.generate_verification_code()
+        
 
         return super(HOD, self).save(*args, **kwargs)
 
