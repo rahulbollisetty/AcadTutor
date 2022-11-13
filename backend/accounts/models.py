@@ -56,13 +56,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class HOD(models.model):
     branch = models.CharField(null=True,blank=True,max_length=10)
     college = models.CharField(null=True,blank=True,max_length=100)
-    referral_code = models.IntegerField(max_length=6)
+    referral_code = models.IntegerField(max_length=5)
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE,primary_key=True)
 
     def get_absolute_url(self):
         return u'/profile/show/%d' % self.id
     def generate_verification_code(self):
-        return base64.urlsafe_b64encode(uuid.uuid1().bytes.encode("base64").rstrip())[:6]
+        return base64.urlsafe_b64encode(uuid.uuid1().bytes.encode("base64").rstrip())[:5]
     def save(self, *args, **kwargs):
         
         if not self.pk:

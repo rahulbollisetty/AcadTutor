@@ -19,5 +19,5 @@ jobs:
         REPO: self
         BRANCH: backend_prod
         FOLDER: backend
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT }}
         CLEAR_GLOBS_FILE: "backend/.clr-target-files"
