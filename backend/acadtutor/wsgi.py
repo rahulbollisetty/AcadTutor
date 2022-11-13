@@ -10,6 +10,6 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
-settings_module = 'quickstartproject.production' if 'WEBSITE_HOSTNAME' in os.environ else 'acadtutor.settings'
+settings_module = 'acadtutor.production' if 'WEBSITE_HOSTNAME' in os.environ else 'acadtutor.settings'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 application = get_wsgi_application()

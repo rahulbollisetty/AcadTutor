@@ -4,6 +4,8 @@ import os
 # Configure the domain name using the environment variable
 # that Azure automatically creates for us.
 ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+CSRF_TRUSTED_ORIGINS = ['https://'+ os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+DEBUG = False
 
 # WhiteNoise configuration
 MIDDLEWARE = [                                                                   
@@ -17,5 +19,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',                    
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
