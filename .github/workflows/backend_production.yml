@@ -18,5 +18,5 @@ jobs:
       env:
         REPO: self
         BRANCH: backend_prod
-        FOLDER: backend/.
+        FOLDER: backend/**
         GITHUB_TOKEN: ${{ secrets.PAT }}
