@@ -1,0 +1,40 @@
+.Subject {
+  max-width: 22rem;
+  background-color: #fff;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+  border: 1px solid #e2e2e2;
+  border-radius: 0.3rem;
+  padding: 1rem;
+}
+.Subject img {
+  display: block;
+  width: 13rem;
+  height: 10rem;
+  object-fit: contain;
+  margin: 0 auto 1.3rem;
+}
+.Subject .sub-name {
+  color: rgb(45, 42, 42);
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.Subject .sub-desc {
+  color: rgb(70, 67, 67);
+  text-align: center;
+  font-size: 1.08rem;
+  margin: 0.7rem auto;
+}
+.Subject .btn {
+  display: block;
+  text-decoration: none;
+  padding: 0.7rem 0.7rem;
+  margin-top: 0.8rem;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: var(--color);
+  border-radius: 0.2rem;
+  cursor:pointer;
+}

@@ -1,0 +1,118 @@
+.wrapper{
+    position:relative;
+    width:25rem;
+    height:35rem;
+    background-color:rgba(243, 240, 237, 0.5);
+    overflow:hidden ;
+    border-radius: 15px 15px 15px 15px;
+    padding:1.5rem 1rem;
+}
+.wrapper .form-container{
+    position: relative;
+}
+.slide-controls{
+    position: relative;
+    text-align: center;
+    transition:all 0.5s ease;
+    z-index:1;
+    box-shadow:0 0 6px 2px rgba(231, 47, 109,0.5);
+    border-radius:30px;
+}
+.slide-controls #btn{
+    position:absolute;
+    top: 0%;
+    left: 0%;
+    width:50%;
+    height:100%;
+    background:linear-gradient(to right ,#e72f6d,#ec2265 );
+    border-radius:30px;
+    z-index:-1;
+    transition: all 0.3s linear;
+
+}
+.slide-controls #btn.left{
+    left: 0%;
+}
+.slide-controls #btn.right{
+    left:50%;
+}
+.slide-controls input{
+    /* width:0rem; */
+    padding:0.7rem 2.5rem;
+    font-size:1.1rem;
+    margin:auto 0.4rem;
+    border:none;
+    border-radius: 15px;
+    outline:none;
+    background-color:transparent;
+    cursor:pointer;
+}
+ .form-container .innerForm-container{
+     position: relative;
+     height: max-content;
+     margin-top:0.7rem;
+}
+.innerForm-container p{
+    margin-top:0.8rem;
+        text-align: center;
+    }
+.innerForm-container p a{
+    text-decoration: none;
+}
+.innerForm-container form{
+    position: absolute;
+    width:100%;
+    top: 0%;
+    margin:auto auto;
+    transition:all 0.3s ease;
+}
+.innerForm-container form .select_box{
+    margin: auto auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0%;
+    margin: 1rem auto;
+    width:20rem;
+}
+.innerForm-container form input{ 
+    border-radius: 15px;
+}
+.innerForm-container form button{
+    margin:0.8rem auto;
+    padding:0.7rem;
+    border-radius:15px;
+    background-color: #e72f6d; 
+}
+select {
+    display: block;
+    background-image:none;
+    background-repeat:no-repeat;
+    background-position:300px;
+    width:9.7rem;
+    padding:0.6rem;
+    color:rgba(0, 0, 0, 0.9);;
+    background-color:white;
+    border:1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    font-size:0.9rem;
+    --webkit-appearance:none;
+    outline:none;
+    /* margin: 1.2rem auto; */
+}
+.teacher_form{
+    top: 0%;
+    right:0%;
+}
+.teacher_signup{
+   top: 0%;
+   right:-100%;
+}
+.student_signup{
+    top: 0%;
+    left:-100%;
+}
+.student_form{
+    top: 0%;
+    left: 0%;
+}
