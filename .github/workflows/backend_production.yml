@@ -4,7 +4,7 @@ on:
     branches:	
       - main
     paths:
-      - './backend'
+      - backend/**
 
 jobs:
   deploy:
@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: push to brach
+    - name: push to branch
       uses: s0/git-publish-subdir-action@develop
       env:
         REPO: self
