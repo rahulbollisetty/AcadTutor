@@ -53,7 +53,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def get_email(self):
         return self.email
 
-class HOD(models.model):
+class HOD(models.Model):
     branch = models.CharField(null=True,blank=True,max_length=10)
     college = models.CharField(null=True,blank=True,max_length=100)
     referral_code = models.IntegerField(max_length=5)
