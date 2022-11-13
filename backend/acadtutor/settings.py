@@ -24,7 +24,7 @@ SECRET_KEY = '4he2ne)2!s##)w)ia_a^=e8rz$ysn3ta-p926+lr+d68p@f-bu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1','.ngrok.io','localhost'] 
+ALLOWED_HOSTS = ['127.0.0.1','.ngrok.io','localhost','acadtutor.azurewebsites.net'] 
 
 
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'accounts',
 ]
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -53,10 +55,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'acadtutor.urls'
 
+CORS_ALLOWED_ORIGINS = []
+
+if DEBUG:
+    CORS_ORIGIN_ALLOW_ALL = True
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -109,7 +117,7 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -133,6 +141,7 @@ MEDIA_URL = '/media/'
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMESSION_CLASSES':[
          'rest_framework.permissions.IsAuthenticated'
@@ -145,3 +154,12 @@ if not DEBUG:
     REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = (
             "rest_framework.renderers.JSONRenderer",
         )
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+
+    SECURE_HSTS_SECONDS = 60
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+

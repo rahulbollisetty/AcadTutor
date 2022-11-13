@@ -5,6 +5,12 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate,login,logout
+from django.http import HttpResponse
+@ensure_csrf_cookie
+@permission_classes([permissions.AllowAny])
+@api_view(('GET',))
+def home(request):
+    return HttpResponse("hello there")
 
 @ensure_csrf_cookie
 @permission_classes([permissions.AllowAny])
