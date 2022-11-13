@@ -51,6 +51,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def get_email(self):
         return self.email
 
+class HOD(models.model):
+    branch = models.CharField(null=True,blank=True,max_length=10)
+    college = models.CharField(null=True,blank=True,max_length=100)
+    
+
 class user_type(models.Model):
     is_teach = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
