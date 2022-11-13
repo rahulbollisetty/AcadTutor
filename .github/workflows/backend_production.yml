@@ -18,5 +18,6 @@ jobs:
       env:
         REPO: self
         BRANCH: backend_prod
-        FOLDER: backend/**
-        GITHUB_TOKEN: ${{ secrets.PAT }}
+        FOLDER: backend
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        CLEAR_GLOBS_FILE: ".clear-target-files"
