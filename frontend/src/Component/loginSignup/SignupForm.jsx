@@ -4,30 +4,37 @@ import Input from './Input'
 import './SignupForm.css'
 const SignupForm = () => {
   const[teacher,setTeacher] = useState(false)
-  const[student,setStudent] = useState(false)
+  const[student,setStudent] = useState(true)
+  const[slide,setSlide] = useState(true)
+  const updateTeacherForm = () =>{
+         setSlide(false)
+         setTeacher(true);
+         setStudent(false);
+  }
+  const updateStudentForm = () =>{
+    setSlide(true)
+    setTeacher(false);
+    setStudent(true);
+}
+  
   return (
     <>
       <div className='wrapper'>
         <div className='form-container'>
           <div className="slide-controls">
-            <input type="button" value="Teacher" onClick={()=>{setTeacher(true)}} ></input>
-            <input type="button" value="Student" onClick={()=>{setStudent(true)}}></input>
+            <div id='btn' className={slide ? "left" : "right"}></div>
+            <input type="button" value="Student" onClick={updateStudentForm} ></input>
+            <input type="button" value="Teacher" onClick={updateTeacherForm}></input>
           </div>
           <div className='innerForm-container'>
-            <form action="#" className={teacher ? "teacher_signup " : ""}>
+            <form action="#" className={student ? "student_form" : "student_signup"}>
               <Input type="txt" placeholder="Your Name" />
               <Input type="email" placeholder="Email Address" />
+              <div className='pswd_box'>
               <Input type="password" placeholder="Password" />
               <Input type="password" placeholder="Confirm Password" />
-              <Input type="text" placeholder="Referral Code" />
-              <Button background="3f6b80" title="Sign Up" />
-              <p className="signup-link">already have account? <a href="">SignIn Now</a></p>
-            </form>
-            <form action="#" className={student ? "student_signup" : ""}>
-              <Input type="txt" placeholder="Your Name" />
-              <Input type="email" placeholder="Email Address" />
-              <Input type="password" placeholder="Password" />
-              <Input type="password" placeholder="Confirm Password" />
+              </div>
+              <div className='select_box'>
               <select>
                 <option value="0">Branch</option>
                 <option value="CS">CS</option>
@@ -49,50 +56,24 @@ const SignupForm = () => {
                 <option value="7th">7th</option>
                 <option value="8th">8th</option>
               </select>
+              </div>
               <Button background="3f6b80" title="Sign Up" />
-              <p className="signup-link">already have account? <a href="">SignIn Now</a></p>
+              <p className="signup-link">Already have an account? <a href="/">Sign in</a></p>
+              </form>
+            <form action="#" className={teacher ? "teacher_form" : "teacher_signup "}>
+              <Input type="txt" placeholder="Your Name" />
+              <Input type="email" placeholder="Email Address" />
+              <div className='pswd_box'>
+              <Input type="password" placeholder="Password" />
+              <Input type="password" placeholder="Confirm Password" />
+              </div>
+              <Input type="text" placeholder="Referral Code" />
+              <Button background="3f6b80" title="Sign Up" />
+              <p className="signup-link">Already have an account? <a href="/">Sign in</a></p>
             </form>
           </div>
         </div>
-
       </div>
-
-      {/* <div className="wrapper">
-          <h2>Sign Up</h2>
-        <div className="form-container">
-          <div className="slide-controls">
-            <input type="button" value="Teacher" ></input>
-            <input type="button" value="Student" ></input>
-          </div>
-          <div className="form-inner teacher">
-          <form action="#" className="teacher_signup">
-              
-                <div className="field">
-                  <input type="password" placeholder="Password" required />
-                </div>
-                <div className="pass-link"><a href="#">Forgot password?</a></div>
-                <div className="field btn">
-                  <div className="btn-layer"></div>
-                  <input type="submit" value="Login" />
-                </div>
-                <div className="signup-link">Not a registered Student? <a href="">Signup now</a></div>
-          </form>
-            <form action="#" className="signup">
-                <div className="field">
-                  <input type="text" placeholder="Email Address" required />
-                </div>
-                <div className="field">
-                  <input type="password" placeholder="Password" required />
-                </div>
-                <div className="pass-link"><a href="#">Forgot password?</a></div>
-                <div className="field btn">
-                  <div className="btn-layer"></div>
-                  <input type="submit" value="Login" />
-                </div>
-                <div className="signup-link">Not a registered Teacher? <a href="">Signup now</a></div>
-             </form>
-        </div>
-      </div> */}
     </>
   )
 };

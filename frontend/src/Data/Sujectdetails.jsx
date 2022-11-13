@@ -2,7 +2,7 @@
 const SubDetail = [
     {img :require('../Images/AI.png'),
      Name:'Artificial Intelligence' ,
-     Desc:'Artificial intelligence is the simulation of human intelligence processes by machines'
+     Desc:'Artificial intelligence is the simulation of human intelligence processes by machines',
     },
     {img :require('../Images/DWM.png'),
     Name:'Data Mining & Warehousing ',

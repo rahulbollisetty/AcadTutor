@@ -1,25 +1,19 @@
-import Branch from "./Component/Branch/Branch";
-import SubDetail from "./Data/Sujectdetails";
-import {navItems , BranchSubmenu}  from "./Data/Menu";
-import Navbar from "./Component/Navbar/Navbar";
 import { Route, Routes} from "react-router-dom";
 import ContentPage from "./Pages/ContentPage";
 import Home from "./Pages/Home";
 import SignUp from "./Pages/SignUp";
+import BranchPage from "./Pages/BranchPage";
 import './App.css'
 
 const App = () =>{
   return (
-    <div className="App">
-        {/* <Home/> */}
-        <SignUp/>
-        {/* <Navbar menu={navItems} submenu={BranchSubmenu} /> */}
+    <div>
         <Routes>
-          <Route path="/" exact component={Branch}></Route>
+          <Route path=""  element={<Home/>}></Route>
+          <Route path="/branch/:branch" element={<BranchPage/>}/>
+          <Route path="/branch/content" element={<ContentPage/>}/>
+          <Route path="/signup" element={<SignUp/>}/>
         </Routes>
-          
-     
-       {/* <Branch subData = {SubDetail}/>  */}
     </div>
   );
 

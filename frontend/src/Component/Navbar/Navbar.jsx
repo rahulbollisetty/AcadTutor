@@ -48,8 +48,8 @@ function Navbar(props) {
             })}
           </ul>
           <div className={InUp ? "btnBlock visible" : "btnBlock hidden"}>
-            <Button title="SignIn" cname="btn signin" />
-            <Button title="SignUp" cname="btn signup" />
+            <Button title="SignIn" cname="btn signin" path="/signin"/>
+            <Button title="SignUp" cname="btn signup" path="/signup" />
           </div>
         </div>
       </nav>
