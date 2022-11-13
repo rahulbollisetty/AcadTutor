@@ -54,7 +54,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class HOD(models.model):
     branch = models.CharField(null=True,blank=True,max_length=10)
     college = models.CharField(null=True,blank=True,max_length=100)
-    
+    access_key = models.IntegerField(max_length=6)
 
 class user_type(models.Model):
     is_teach = models.BooleanField(default=False)
