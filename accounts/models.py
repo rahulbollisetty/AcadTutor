@@ -62,7 +62,7 @@ class HOD(models.model):
     def get_absolute_url(self):
         return u'/profile/show/%d' % self.id
     def generate_verification_code(self):
-        return base64.urlsafe_b64encode(uuid.uuid1().bytes.encode("base64").rstrip())[:25]
+        return base64.urlsafe_b64encode(uuid.uuid1().bytes.encode("base64").rstrip())[:6]
     def save(self, *args, **kwargs):
         
         if not self.pk:
