@@ -2,7 +2,7 @@ name: Push to backend_prod
 on:
   push:	
     branches:	
-      - master
+      - main
     paths:
       - './backend'
 
