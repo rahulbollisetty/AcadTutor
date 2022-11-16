@@ -1,6 +1,6 @@
 from rest_framework.decorators import permission_classes,api_view
 from rest_framework import permissions
-from . models import CustomUser,user_type
+from . models import CustomUser,Teacher,HOD,Student
 from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.utils.decorators import method_decorator
@@ -21,14 +21,15 @@ def get_CSRF_token(request):
 @permission_classes([permissions.AllowAny])
 @csrf_protect
 @api_view(('POST',))
-def register(request):
+def student_register(request):
     if (request.method == 'POST'):
         data = request.data
+        name = data['name']
         email = data['email']
         password = data['password']
         re_password = data['re_password']
-        st = data['student']
-        te = data['teacher']
+        branch = data['branch']
+        sem = data['semester']
 
         try:
             if password == re_password:
@@ -36,18 +37,53 @@ def register(request):
                     return Response({ 'error': 'Email already exists' })
                 else:
                     user = CustomUser.objects.create_user(
-                        email=email
+                        email=email,name=name
                     )
                     user.set_password(password)
-                    usert = None
-                    if st:
-                       usert = user_type(user=user,is_student=True)
-                       user.is_active = True
-                    elif te:
-                        usert = user_type(user=user,is_teach=True)
-                        user.is_active = False
+                    user.is_student = True
+                    user.is_active = True
+                    stud = Student(user=user,branch=branch,sem=sem)
+                    stud.save()
                     user.save()
-                    usert.save()
+                    return Response({ 'success': 'User created successfully' })
+            else:
+                    return Response({ 'error': 'Passwords do not match' })
+
+            
+        except Exception as e:
+            # return Response({ 'error': 'Something went wrong when registering account' })
+            return Response({ 'error': str(e) })
+
+
+@permission_classes([permissions.AllowAny])
+@csrf_protect
+@api_view(('POST',))
+def teacher_register(request):
+    if (request.method == 'POST'):
+        data = request.data
+        name = data['name']
+        email = data['email']
+        password = data['password']
+        re_password = data['re_password']
+        ref = data['refc']
+
+        try:
+            if password == re_password:
+                if CustomUser.objects.filter(email=email).exists():
+                    return Response({ 'error': 'Email already exists' })
+                else:
+                    if HOD.objects.filter(refid=ref).exists():
+                        user = CustomUser.objects.create_user(
+                            email=email,name=name
+                        )
+                        user.set_password(password)
+                        user.is_teach = True
+                        user.is_active = True
+                        user.save()
+                        Hod = HOD.objects.get(refid=ref)
+                        teacher = Teacher(hod=Hod,user=user)
+                        teacher.save()
+
                     return Response({ 'success': 'User created successfully' })
             else:
                     return Response({ 'error': 'Passwords do not match' })
@@ -84,7 +120,7 @@ def Login(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            type_obj = user_type.objects.get(user=user)
+            type_obj = CustomUser.objects.get(email=email)
             if user.is_authenticated and type_obj.is_student:
                 return Response({'url': 'student dashboard'}) 
             elif user.is_authenticated and type_obj.is_teach:
