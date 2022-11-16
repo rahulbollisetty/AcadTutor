@@ -4,17 +4,17 @@ import Home from "./Pages/Home";
 import SignUp from "./Pages/SignUp";
 import BranchPage from "./Pages/BranchPage";
 import './App.css'
-
+import React from 'react'
 const App = () =>{
   return (
-    <div>
+    <>
         <Routes>
           <Route path=""  element={<Home/>}></Route>
           <Route path="/branch/:branch" element={<BranchPage/>}/>
           <Route path="/branch/content" element={<ContentPage/>}/>
           <Route path="/signup" element={<SignUp/>}/>
         </Routes>
-    </div>
+    </>
   );
 
 }

@@ -1,9 +1,9 @@
 import React,{useEffect}from 'react'
 import './Semester.css'
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import 'swiper/swiper.min.css'
+import "swiper/modules/pagination/pagination.min.css";
+import "swiper/modules/navigation/navigation.min.css";
 import { Keyboard, Pagination, Navigation , Mousewheel} from "swiper";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
