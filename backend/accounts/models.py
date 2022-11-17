@@ -1,3 +1,5 @@
+import uuid
+import base64
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
@@ -39,25 +41,41 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
-
+    is_teach = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     objects = UserManager()
-
+    def __str__(self):
+        if self.is_student == True:
+            return self.email + " - is_student"
+        else:
+            return self.email + " - is_teacher"
     def get_absolute_url(self):
         return "/users/%i/" % (self.pk)
     def get_email(self):
         return self.email
 
-class user_type(models.Model):
-    is_teach = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=False)
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE,primary_key=True)
-
+class HOD(models.Model):
+    branch = models.CharField(null=True,blank=True,max_length=10)
+    college = models.CharField(null=True,blank=True,max_length=100)
+    refid = models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False)    
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     def __str__(self):
-        if self.is_student == True:
-            return CustomUser.get_email(self.user) + " - is_student"
-        else:
-            return CustomUser.get_email(self.user) + " - is_teacher"
+        return CustomUser.get_email(self.user) + " - is_HOD"
+
+class Teacher(models.Model):
+    hod = models.ForeignKey(HOD,on_delete=models.CASCADE)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE,primary_key=True)    
+    def __str__(self):
+        return CustomUser.get_email(self.user) + " - is_teacher"
+
+class Student(models.Model):
+    branch = models.CharField(null=True,blank=True,max_length=10)
+    sem = models.IntegerField(null=True,blank=True,max_length=2)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE,primary_key=True)    
+    def __str__(self):
+        return CustomUser.get_email(self.user) + " - is_student"
+

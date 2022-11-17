@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import CustomUser, user_type
+from .models import CustomUser,HOD,Teacher,Student
 
 
 class CustomUserAdmin(BaseUserAdmin):
@@ -12,6 +12,9 @@ class CustomUserAdmin(BaseUserAdmin):
             'is_staff',
             'is_superuser',
             'groups',
+            'is_student',
+            'is_teach',
+            
             'user_permissions',
         )}),
     )
@@ -26,11 +29,16 @@ class CustomUserAdmin(BaseUserAdmin):
     )
 
     list_display = ('email', 'name', 'is_staff', 'last_login')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
+    list_filter = ('is_staff', 'is_teach','is_student','is_superuser', 'is_active', 'groups')
     search_fields = ('email',)
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
 
+class HODAdmin(admin.ModelAdmin):
+    readonly_fields = ('refid',)
 
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(user_type)
+admin.site.register(HOD,HODAdmin)
+admin.site.register(Teacher)
+admin.site.register(Student)
+
