@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import {showLoginSlice} from '../features/Reducer'
+import showLoginReducer from '../features/Reducer'
 
 export const store = configureStore({
   reducer: {
-    showLoginSlice : showLoginSlice,
+    showLoginSlice : showLoginReducer,
 },
 })

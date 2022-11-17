@@ -1,20 +1,15 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
-// import {show} from '../features/Reducer' ;
+import { useDispatch } from 'react-redux'
 import "./Button.css";
+import { showHide } from '../../features/Reducer';
 
 const Button = (props) => {
-  // const {showhide} = useSelector(state => state.ShowHideNavbar);
-  // const dispatch = useDispatch()
-  // console.log(showhide)
-
+  const dispatch = useDispatch()
 
   if(props.title === "SignIn"){
     return(
-    
-      <button className={props.cname} >{props.title}</button>
-    
+      <button className={props.cname} onClick={()=>dispatch(showHide(true))} >{props.title}</button>
     )
   }
   return(
