@@ -61,8 +61,16 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class HOD(models.Model):
     branch = models.CharField(null=True,blank=True,max_length=10)
     college = models.CharField(null=True,blank=True,max_length=100)
-    refid = models.UUIDField(primary_key = True,default = uuid.uuid4,editable = False)    
+    refid = models.CharField(max_length=300, blank=True, null=True,unique=True)   
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+
+    def generate_verification_code(self):
+        return base64.urlsafe_b64encode(uuid.uuid1().bytes).rstrip(b'=').decode('ascii')
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.refid = self.generate_verification_code()
+        return super(HOD, self).save(*args, **kwargs)
     def __str__(self):
         return CustomUser.get_email(self.user) + " - is_HOD"
 
@@ -74,7 +82,7 @@ class Teacher(models.Model):
 
 class Student(models.Model):
     branch = models.CharField(null=True,blank=True,max_length=10)
-    sem = models.IntegerField(null=True,blank=True,max_length=2)
+    sem = models.IntegerField(null=True,blank=True)
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE,primary_key=True)    
     def __str__(self):
         return CustomUser.get_email(self.user) + " - is_student"
