@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between; 
+    font-family:"Solway";
 }
 .navbar-logo span{
   color:#ff9900d9;
