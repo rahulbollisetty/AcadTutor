@@ -93,6 +93,7 @@ def teacher_register(request):
             # return Response({ 'error': 'Something went wrong when registering account' })
             return Response({ 'error': str(e) })
 
+@permission_classes([permissions.AllowAny])
 @csrf_protect
 @api_view(('GET',))
 def IsAuthenticated(request):
@@ -107,12 +108,11 @@ def IsAuthenticated(request):
         # return Response({ 'error': 'Something went wrong when checking authentication status' })
         return Response({ 'error': str(e) })
 
-@permission_classes([permissions.AllowAny])
 @csrf_protect
+@permission_classes([permissions.AllowAny])
 @api_view(('POST',))
 def Login(request):
     data = request.data
-
     email = data['email']
     password = data['password']
 

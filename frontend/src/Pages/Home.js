@@ -4,7 +4,6 @@ import {navItems , BranchSubmenu}  from "../Data/Menu";
 import Navbar from '../Component/Navbar/Navbar'
 import LoginForm from '../Component/loginSignup/LoginForm';
 const Home = () => {
-    const [show, setShow] = useState(false);
     const [user, setUser] = useState([]);
     // useEffect(()=>{
     //   async function getAllUser(){
@@ -22,7 +21,6 @@ const Home = () => {
   return (
     <>
     <Navbar menu={navItems} submenu={BranchSubmenu} />
-    <button >click Me</button>
     <LoginForm />
     </>
   )

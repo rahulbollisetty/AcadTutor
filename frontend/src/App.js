@@ -12,9 +12,9 @@ const App = () =>{
         <Routes>
           <Route exact path=""  element={<Home/>}></Route>
           <Route exact path="/:branch" element={<BranchPage/>}/>
-          {/* <Route path="/bran/content" element={<ContentPage/>}/>
+          <Route path="/branch/content" element={<ContentPage/>}/>
           <Route path="/signup" element={<SignUp/>}/>
-          <Route exact path="/:branc/:subject" element={<Subject/>}/> */}
+          <Route exact path="/:branch/:sem/:subject" element={<Subject/>}/>
         </Routes>
     </>
   );

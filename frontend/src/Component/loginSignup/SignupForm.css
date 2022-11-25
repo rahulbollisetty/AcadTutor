@@ -77,12 +77,28 @@
 }
 .innerForm-container form input{ 
     border-radius: 15px;
+    display: block; 
+    padding: 0.6rem 0.8rem;
+    margin: 1.2rem auto;
+    font-size:0.9rem;
+    width:20rem;
+    outline:none;
+    color:rgba(0, 0, 0, 0.9);
+    border:1px solid rgba(0, 0, 0, 0.2);  
 }
+
 .innerForm-container form button{
+    display: block;
+    width:20rem;
     margin:0.8rem auto;
     padding:0.7rem;
     border-radius:15px;
     background-color: #e72f6d; 
+    padding:0.6rem;
+    color:#fff;
+    font-size:1.1rem;
+    font-weight: 600;
+    border:none;
 }
 select {
     display: block;
