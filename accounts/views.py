@@ -3,7 +3,6 @@ from rest_framework import permissions
 from . models import CustomUser,Teacher,HOD,Student
 from rest_framework.response import Response
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
-from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
 @ensure_csrf_cookie
@@ -83,8 +82,9 @@ def teacher_register(request):
                         Hod = HOD.objects.get(refid=ref)
                         teacher = Teacher(hod=Hod,user=user)
                         teacher.save()
-
-                    return Response({ 'success': 'User created successfully' })
+                        return Response({ 'success': 'User created successfully' })
+                    else:
+                        return Response({ 'error': 'Referal Code not valid' })
             else:
                     return Response({ 'error': 'Passwords do not match' })
 
