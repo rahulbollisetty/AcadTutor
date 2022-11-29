@@ -54,7 +54,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         else:
             return self.email + " - is_teacher"
     def get_absolute_url(self):
-        return "/users/%i/" % (self.pk)
+        return "/users/%s/" % (self.pk)
     def get_email(self):
         return self.email
 

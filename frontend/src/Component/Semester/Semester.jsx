@@ -12,7 +12,7 @@ const Semester = (props) => {
   useEffect(() => {
     AOS.init(
       {
-        offset:180, //okay
+        offset:180, 
         duration:500,
         easing:"linear",
         delay:100,
