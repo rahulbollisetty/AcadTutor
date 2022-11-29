@@ -155,7 +155,7 @@ const SignupForm = () => {
                 <input type="password" placeholder="Password" name='teacher_pswd' value={newteacher.teacher_pswd} onChange={AddNewteacher} />
                 <input type="password" placeholder="Confirm Password" name='teacher_cpswd' value={newteacher.teacher_cpswd} onChange={AddNewteacher} />
               </div>
-              <input type="text" placeholder="Referral Code" name='teacher_rfcl' value={newteacher.teacher_refc} onChange={AddNewteacher}/>
+              <input type="text" placeholder="Referral Code" name='teacher_refc' value={newteacher.teacher_refc} onChange={AddNewteacher}/>
               <button
                 type="button"
                 className="Formbutton"
