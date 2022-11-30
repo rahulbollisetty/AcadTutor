@@ -11,6 +11,9 @@ const LoginForm = (props) => {
   const [password, setPassword] = useState();
   const LoginUser = async () => {
     try {
+      const res = await axios.get(`http://127.0.0.1:8000/accounts/csrf_cookie`);
+      console.log(Cookies.get('csrftoken'),res)
+
       const response = await axios.post(
         `http://127.0.0.1:8000/accounts/login`,
         {
