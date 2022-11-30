@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "./Dropdown";
@@ -42,13 +42,13 @@ function Navbar(props) {
               }
               return (
                 <li key={item.id} className={item.cName}>
-                  <Link to={item.path}>{item.title}</Link>
+                  <Link to={`/${item.path}`} state={{data:false}} >{item.title}</Link>
                 </li>
               );
             })}
           </ul>
           <div className={InUp ? "btnBlock visible" : "btnBlock hidden"}>
-            <Button title="SignIn" cname="btn signin" path="/signin"/>
+            <Button title="SignIn" cname="btn signin" />
             <Button title="SignUp" cname="btn signup" path="/signup" />
           </div>
         </div>

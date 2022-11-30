@@ -8,7 +8,7 @@ export const navItems = [
     {
       id: 2,
       title: "Branches",
-      path: "./branch",
+      path: "",
       cName: "nav-item",
     },
     {
@@ -22,7 +22,7 @@ export const navItems = [
 export const BranchSubmenu = [
         {
             id: 1,
-            title: "Computer Science",
+            title: "Computer Science Enginerring",
             path: "/cs",
          
         },
@@ -47,7 +47,7 @@ export const BranchSubmenu = [
           {
             id: 5,
             title: "Electrical and Electronics Engineering",
-            path: "/eee",
+            path: "/eee", 
            
           },
 ];

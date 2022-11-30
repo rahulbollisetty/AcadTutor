@@ -1,0 +1,31 @@
+.branchHero_con{
+    width:100%;
+    height: 60vh;
+    margin:2rem 0 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    padding:3rem;
+    background-color:#faf7f7;
+}
+.branchHero_con .heading{
+    width:40vw;
+}
+.branchHero_con .heading h1{
+    font-size:3.3rem;
+    font-weight:600;
+    color:#315272;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+.branchHero_con .ImgBx{
+    width:50vw;
+}
+.branchHero_con .ImgBx img{
+    display: block;
+    max-width:630px;
+    width:100%;
+    margin:0 auto;
+    object-fit: cover;
+}
