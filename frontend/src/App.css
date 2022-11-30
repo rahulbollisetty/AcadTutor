@@ -7,7 +7,9 @@ html {
   margin: 0%;
   padding: 0%;
   box-sizing: border-box;
-  --color: #3f6b80;
+  --color:#000;
+  --color2 : #FF9900;
+  /* --color: #3f6b80; */
   /* --color:#0D3E5D; */
   /* font-family:"Solway"; */
   font-weight: 200;
