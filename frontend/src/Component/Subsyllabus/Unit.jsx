@@ -1,21 +1,22 @@
 import React from 'react'
 import './Unit.css'
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import {FaRegPlayCircle} from 'react-icons/fa';
 const Unit = () => {
   const GetUnits = async () => {
     try {
-      const response = await axios.get(
-        `http://127.0.0.1:8000/6383767a6c81e4d4547c6601/1`,
+      const response = await axios.post(
+        `http://127.0.0.1:8000/content/6386186dc0545823cd2e2930/get_unit`,
         {
-          
         },
         {
           headers: {
             "Content-Type": "application/json",
+            "X-CSRFToken": Cookies.get('csrftoken')
           },
         }
-      );
+      ); 
       console.log({ BACKEND_RESPONSE: response });
     } catch (err) {
       console.error(err);
