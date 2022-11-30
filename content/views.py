@@ -120,9 +120,9 @@ def addSubTopic(request):
             return Response({ 'error': str(e) })
 
 @csrf_protect
-@api_view(('POST',))
+@api_view(('GET',))
 def getUnit(request,unit_id):
-    if (request.method == 'POST'):
+    if (request.method == 'GET'):
         user = request.user
         print(user)
         try:
