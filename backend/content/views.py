@@ -120,10 +120,11 @@ def addSubTopic(request):
             return Response({ 'error': str(e) })
 
 @csrf_protect
-@api_view(('GET',))
+@api_view(('POST',))
 def getUnit(request,unit_id):
-    if (request.method == 'GET'):
+    if (request.method == 'POST'):
         user = request.user
+        print(user)
         try:
             isAuth = user.is_authenticated
             if isAuth:

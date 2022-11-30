@@ -11,23 +11,23 @@
     margin:0  0.7rem;
 }
 .btnBlock .btn.signin{
-    border:2px solid #3f6b80;
-    color:#3f6b80;
+    border:2px solid var(--color2);
+    color:var(--color2);
     transition: all 0.5s ease;
 }
 .btnBlock .btn.signin:hover{
-    border:2px solid #3f6b80;
-    background-color: #3f6b80;
+    border:2px solid var(--color2);
+    background-color: var(--color2);
     color: #fff;
 }
 .btnBlock .btn.signup{
-    border:2px solid #3f6b80;
-    background-color: #3f6b80;
+    border:2px solid var(--color2);
+    background-color: var(--color2);
     transition: all 0.5s ease;
 }
 .btnBlock .btn.signup:hover{
-    border:2px solid #3f6b80;
-    color:#3f6b80;
+    border:2px solid var(--color2);
+    color:var(--color2);
     background-color: transparent;
 }
 .scrolled-navbar .btnBlock .btn.signin{
@@ -37,5 +37,5 @@
 .scrolled-navbar .btnBlock .btn.signup{
     border:2px solid #fff;
     background-color: #fff;
-    color: #3f6b80;
+    color: var(--color2);
 }

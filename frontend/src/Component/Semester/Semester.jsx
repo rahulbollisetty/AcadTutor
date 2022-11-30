@@ -1,19 +1,19 @@
 import React,{useEffect}from 'react'
-import './Semester.css'
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper.min.css'
-import "swiper/modules/pagination/pagination.min.css";
-import "swiper/modules/navigation/navigation.min.css";
+import 'swiper/modules/pagination/pagination.min.css'
+import 'swiper/modules/navigation/navigation.min.css'
 import { Keyboard, Pagination, Navigation , Mousewheel} from "swiper";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import './Semester.css'
 import Subject from '../Subject/Subject';
 const Semester = (props) => {
   useEffect(() => {
     AOS.init(
       {
-        offset:180,
-        duration: 600,
+        offset:180, 
+        duration:500,
         easing:"linear",
         delay:100,
       }
