@@ -5,31 +5,30 @@
 }
 .topics{
     position:relative;
-    flex-basis:15%;
+    flex-basis:17%;
     min-width:230px;
-    padding:0.8rem;
-    /* border: 1px solid red; */
+    padding:0.8rem 0.8rem 0;
 }
 .topics ul{
-    height:70vh;
+    height:65vh;
     width:100%;
-    padding:0.5rem auto;
-    margin:0.5rem auto;
+    margin:0.5rem auto 0;
     list-style: none;
     overflow: auto;
-    /* border: 1px solid red; */
+   
 }
 .topics h2{
     font-size:1.4rem;
     font-weight:400;
+    padding:0.6rem;
+ 
 }
 .topics ul li{
     margin:0.3rem 0;
     padding:0.4rem;
     font-size:1rem;
     font-weight:500;
-    border:2px solid #fff; 
-    transition:0.5s ease;  
+    transition:0.5s ease; 
 }
 .contents_container .rightcont{
     position: relative;
@@ -39,24 +38,22 @@
     flex-basis:75%;
     height:80vh;
     flex-direction: column;
-    margin:0 auto 0; 
+    margin:0 auto; 
     padding:2rem;
     background-color: white;
     border-radius: 15px;
     overflow: auto;
-    /* border: 1px solid red ; */
 }
 .contents_container .rightcont .video_note{
     margin:2rem auto;
     width:90%;
     height:100%;
-    margin:3rem auto;
 } 
 .contents_container .rightcont .video_note .yt_video{
      width:100%;
      height:60vh;
-     margin:0 auto 3rem;
-     border: 1px solid #000;
+     margin:0 auto;
+     box-shadow: 0px 0px 8px 0px rgba(89,89,89,0.6);
 }
 .contents_container .rightcont .video_note .yt_video embed{
     width:100%;
@@ -65,7 +62,10 @@
 }
 .contents_container .rightcont .notes_container{
     width:100%;
-    margin:0 auto;
+    margin:3rem auto;
+    border-top-right-radius:1rem;
+    border-top-left-radius:1rem;
+    box-shadow: 0px 0px 8px 0px rgba(89,89,89,0.69);
 }
 .contents_container .rightcont .notes_container h2{
     background-color: var(--color);
@@ -76,7 +76,7 @@
     border-top-left-radius:1rem;
 }
 .contents_container .rightcont .notes_container .note{
-    border:1px solid rgba(0,0,0,0.5);
+    /* border:1px solid rgba(0,0,0,0.5); */
     padding:1.5rem;
     line-height:1.3rem;
     overflow: auto;

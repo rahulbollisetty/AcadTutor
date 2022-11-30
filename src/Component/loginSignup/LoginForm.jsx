@@ -3,14 +3,19 @@ import "./Login.css"
 import Input from './Input'
 import Button from './Button'
 import {FaTimes} from  'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
+import { showHide } from '../../features/Reducer'
 const LoginForm  = (props) => {
-  if( ! props.show ){
+
+  const showLogin = useSelector((state=>state.showLoginSlice.showHide));
+  const dispatch = useDispatch();
+  if( ! showLogin ){
     return null
   }
   return (
   <div className='LoginForm_Container'>
     <div className='Loginform_Wrapper'>
-       <button className='crossbtn' onClick={()=> props.showhide(false)}><FaTimes/></button>
+       <button className='crossbtn' onClick={()=> dispatch(showHide(false))}><FaTimes/></button>
         <h2>Login Page</h2>
         <form className='LoginForm'>
            <Input type="email" placeholder="Email Address"/>  

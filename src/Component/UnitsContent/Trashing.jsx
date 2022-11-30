@@ -8,7 +8,9 @@ const Trashing = () => {
     const {location} = useParams()
   return (
     <div className='location_container'>
-        hello <FaChevronRight/>
+        <a href='/'>Datastructure</a><FaChevronRight/>
+        <a href='/'>Introduction</a><FaChevronRight/>
+        <a href='/'>Arrya</a><FaChevronRight/>
     </div>
   )
 }
