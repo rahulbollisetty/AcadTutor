@@ -1,15 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    showhide : false,
+    showHide : false,
 }
 
 export const showLoginSlice = createSlice({
     name:"showLogin",
     initialState,
     reducers:{
-        showHide:(state)=>{
-            console.log(state)
+        showHide:(state,action)=>{
+            console.log(action)
+            state.showHide = action.payload
         }
     }
 })
+
+export const {showHide} = showLoginSlice.actions;
+export default showLoginSlice.reducer
+
