@@ -5,7 +5,14 @@ import Dropdown from "./Dropdown";
 import Button from "./Button";
 
 function Navbar(props) {
-  const [InUp, setInUp] = useState(true);
+  const guestLinks = (
+   <>
+    <div className="btnBlock">
+            <Button title="SignIn" cname="btn signin" />
+            <Button title="SignUp" cname="btn signup" path="/signup" />
+    </div>
+   </>
+  );
 
   const [dropdown, setDropdown] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -47,10 +54,12 @@ function Navbar(props) {
               );
             })}
           </ul>
-          <div className={InUp ? "btnBlock visible" : "btnBlock hidden"}>
+          {guestLinks}
+          {/* {isAuthenticated ? authlinks : guestLinks} */}
+          {/* <div className="btnBlock">
             <Button title="SignIn" cname="btn signin" />
             <Button title="SignUp" cname="btn signup" path="/signup" />
-          </div>
+          </div> */}
         </div>
       </nav>
     </>
