@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from "axios";
-import './SignupForm.css'
+import './SignupForm.css';
+import Cookies from 'js-cookie';
 const SignupForm = () => {
   const [newstudent, setNewstudent] = useState({
     student_name: "",
@@ -56,6 +57,7 @@ const SignupForm = () => {
   const AddStudent = async () => {
     console.log(" AddStudent Function is running");
     try {
+      const res = await axios.get(`http://127.0.0.1:8000/accounts/csrf_cookie`);
       const response = await axios.post(
         `http://127.0.0.1:8000/accounts/register`,
         {
@@ -69,6 +71,8 @@ const SignupForm = () => {
         {
           headers: {
             "Content-Type": "application/json",
+            "X-CSRFToken": Cookies.get('csrftoken')
+
           },
         }
       );
