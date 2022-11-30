@@ -144,7 +144,7 @@ const SignupForm = () => {
                 type="button"
                 onClick={AddStudent}
               >
-                Login
+                Signup
               </button>
               <p className="signup-link">Already have an account? <a href="/">Sign in</a></p>
             </form>
@@ -161,7 +161,7 @@ const SignupForm = () => {
                 className="Formbutton"
                 onClick={AddTeacher}
               >
-                Login
+                Signup
               </button>
               <p className="signup-link">Already have an account? <a href="/">Sign in</a></p>
             </form>
