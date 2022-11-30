@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Login.css";
+import Cookies from 'js-cookie';
 import axios from "axios";
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +20,8 @@ const LoginForm = (props) => {
         {
           headers: {
             "Content-Type": "application/json",
+            "X-CSRFToken": Cookies.get('csrftoken')
+
           },
         }
       );
