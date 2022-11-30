@@ -32,6 +32,16 @@
   .Loginform_Wrapper form{
     margin:1.3rem auto;
   }
+  .Loginform_Wrapper form input{
+    display: block; 
+    padding: 0.6rem 0.8rem;
+    margin: 1.2rem auto;
+    font-size:0.9rem;
+    width:20rem;
+    outline:none;
+    color:rgba(0, 0, 0, 0.9);
+    border:1px solid rgba(0, 0, 0, 0.2);  
+}
   .Loginform_Wrapper form a{
     text-decoration: none;
     color:var(--color);
@@ -58,7 +68,23 @@
     width:1.7em;
     height:1.7em;
   }
-  
+  .Formbutton{
+    display: block;
+    width:20rem;
+    margin:auto auto;
+  }
+  .Loginform_Wrapper form button{
+    cursor:pointer;
+    display: block;
+    width:20rem;
+    width:100%;
+    padding:0.6rem;
+    margin:1.8rem auto;
+    color:#fff;
+    font-size:1.1rem;
+    font-weight: 600;
+    border:none;
+  }
   @keyframes fadeInDown {
     0% {
       opacity: 0;
