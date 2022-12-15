@@ -5,20 +5,35 @@ from rest_framework.decorators import permission_classes,api_view
 from rest_framework.response import Response
 from accounts.models import HOD,Teacher,CustomUser
 from bson.objectid import ObjectId
-from bson.json_util import dumps
+from bson.json_util import dumps,loads
 import json
 db_handle, mongo_client = get_db_handle()
 
 subj_collection_handle = get_collection_handle(db_handle, "subjects")
 unit_collection_handle = get_collection_handle(db_handle, "units")
-
+branch_collection_handle = get_collection_handle(db_handle, "branches")
+# uncomment to create branches
+# def createbranch():
+#     dict=[{
+#         "branch":"CS",
+#         "semester":[{"id":1,"subjects":[]},{"id":2,"subjects":[]},{"id":3,"subjects":[]},{"id":4,"subjects":[]},{"id":5,"subjects":[]},{"id":6,"subjects":[]},{"id":7,"subjects":[]},{"id":8,"subjects":[]}],
+#     },{"branch":"CE",
+#         "semester":[{"id":1,"subjects":[]},{"id":2,"subjects":[]},{"id":3,"subjects":[]},{"id":4,"subjects":[]},{"id":5,"subjects":[]},{"id":6,"subjects":[]},{"id":7,"subjects":[]},{"id":8,"subjects":[]}],
+#     },{"branch":"ME",
+#         "semester":[{"id":1,"subjects":[]},{"id":2,"subjects":[]},{"id":3,"subjects":[]},{"id":4,"subjects":[]},{"id":5,"subjects":[]},{"id":6,"subjects":[]},{"id":7,"subjects":[]},{"id":8,"subjects":[]}],
+#     },{"branch":"ET",
+#         "semester":[{"id":1,"subjects":[]},{"id":2,"subjects":[]},{"id":3,"subjects":[]},{"id":4,"subjects":[]},{"id":5,"subjects":[]},{"id":6,"subjects":[]},{"id":7,"subjects":[]},{"id":8,"subjects":[]}],
+#     },{"branch":"EE",
+#         "semester":[{"id":1,"subjects":[]},{"id":2,"subjects":[]},{"id":3,"subjects":[]},{"id":4,"subjects":[]},{"id":5,"subjects":[]},{"id":6,"subjects":[]},{"id":7,"subjects":[]},{"id":8,"subjects":[]}],
+#     }]
+#     branch_collection_handle.insert_many(dict)
+# createbranch()
 @csrf_protect
 @api_view(('POST',))
 def createSubj(request):
     if (request.method == 'POST'):
         data = request.data
         user = request.user
-        print(subj_collection_handle)
         try:
             isAuth = user.is_authenticated
             if isAuth:
@@ -30,18 +45,31 @@ def createSubj(request):
                         branch = ""
                     else:
                         branch = hod.branch
-                        print(teacher.user.get_absolute_url())
                     dict = {
                         "c_name":data['subj_name'],
                         "sem": data['sem'],
                         "summary": data['summary'],
                         "branch": branch,
                         "units":[],
+                        "start_date":data['date'],
+                        "weightage": data['weightage'],
                         "author_email":user.email,
                         "author_name":user.name
                     }
                     sub = subj_collection_handle.insert_one(dict)
-
+                    branch = branch_collection_handle.find_one_and_update(
+                        {
+                            "branch": branch,"semester.id":data['sem']
+                        },
+                    {'$push': {'semester.$.subjects': 
+                    {"sub_name":data['subj_name'],
+                        "sub_id":sub.inserted_id,
+                        "summary": data['summary'],
+                        "author_email":user.email,
+                        }
+                    
+                    }}
+                    )
                     return Response({'success':f"add subj successfully,subject id:{sub.inserted_id}"})
                 else:
                     return Response({'success':"you are not authorized to access"})
@@ -142,3 +170,24 @@ def getUnit(request,unit_id):
             # return Response({ 'error': 'Something went wrong when checking authentication status' })
             return Response({ 'error': str(e) })
 
+@csrf_protect
+@api_view(('GET',))
+def getBranch(request,branch):
+    if (request.method == 'GET'):
+            obj = branch_collection_handle.find_one({"branch": branch},{"_id": 0 })
+            data = dumps(obj)
+            if obj is not None:
+                return Response(data)
+            else:
+                return Response({'error':"Invalid request"})
+
+@csrf_protect
+@api_view(('GET',))
+def getSubj(request,subj_id):
+    if (request.method == 'GET'):
+            obj = subj_collection_handle.find_one({"_id": ObjectId(subj_id)},{"_id": 0 })
+            data = dumps(obj)
+            if obj is not None:
+                return Response(data)
+            else:
+                return Response({'error':"Invalid request"})

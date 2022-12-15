@@ -4,6 +4,13 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.utils import timezone
 
+BRANCH_CHOICES = [
+    ('CS', 'Computer Science Engineering'),
+    ('CE', 'Civil Engineering'),
+    ('ME', 'Mechanical Engineering'),
+    ('ET', 'Electronics and Communication Engineering'),
+    ('EE', 'Electrical and Electronics Engineering'),
+]
 class UserManager(BaseUserManager):
 
     def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
@@ -59,7 +66,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 class HOD(models.Model):
-    branch = models.CharField(null=True,blank=True,max_length=10)
+    branch = models.CharField(null=True,choices=BRANCH_CHOICES, blank=True,max_length=10)
     college = models.CharField(null=True,blank=True,max_length=100)
     refid = models.CharField(max_length=300, blank=True, null=True,unique=True)   
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
