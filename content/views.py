@@ -63,7 +63,7 @@ def createSubj(request):
                         },
                     {'$push': {'semester.$.subjects': 
                     {"sub_name":data['subj_name'],
-                        "sub_id":sub.inserted_id,
+                        "sub_id":str(sub.inserted_id),
                         "summary": data['summary'],
                         "author_email":user.email,
                         }
@@ -102,7 +102,7 @@ def addUnit(request):
                         {
                             "_id": ObjectId(data['subj_id'])
                         },
-                        {'$push': {'units': {"unit_id":unit.inserted_id,"u_name":"untitled_topic"}}}
+                        {'$push': {'units': {"unit_id":str(unit.inserted_id),"u_name":"untitled_topic"}}}
                     )
                     return Response({'success':f"add unit successfully,unit id:{unit.inserted_id}"})
                 else:
@@ -175,7 +175,7 @@ def getUnit(request,unit_id):
 def getBranch(request,branch):
     if (request.method == 'GET'):
             obj = branch_collection_handle.find_one({"branch": branch},{"_id": 0 })
-            data = dumps(obj)
+            data = obj
             if obj is not None:
                 return Response(data)
             else:
@@ -186,7 +186,7 @@ def getBranch(request,branch):
 def getSubj(request,subj_id):
     if (request.method == 'GET'):
             obj = subj_collection_handle.find_one({"_id": ObjectId(subj_id)},{"_id": 0 })
-            data = dumps(obj)
+            data = obj
             if obj is not None:
                 return Response(data)
             else:
