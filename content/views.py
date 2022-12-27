@@ -54,7 +54,6 @@ def createSubj(request):
                     b_upload_link = upload(book_file)
                     if not s_upload_link :
                         return Response({'error':f" not allowed only accept {', '.join(ext for ext in ['.pdf','.doc','.docx'])} "})
-                    
                     dict = {
                         "c_name":data['subj_name'],
                         "sem": data['sem'],
@@ -130,6 +129,7 @@ def addUnit(request):
 
 @csrf_protect
 @api_view(('POST',))
+@parser_classes([MultiPartParser,FormParser])
 def addSubTopic(request):
     if (request.method == 'POST'):
         data = request.data
