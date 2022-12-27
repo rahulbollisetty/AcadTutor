@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from acadtutor.utils import get_collection_handle,get_db_handle
+from acadtutor.azure import ALLOWED_EXTENTIONS,upload
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
-from rest_framework.decorators import permission_classes,api_view
+from rest_framework.decorators import permission_classes,api_view,parser_classes
+from rest_framework.parsers import MultiPartParser,FormParser,FileUploadParser
 from rest_framework.response import Response
 from accounts.models import HOD,Teacher,CustomUser
 from bson.objectid import ObjectId
 from bson.json_util import dumps,loads
-import json
+from pathlib import Path
 db_handle, mongo_client = get_db_handle()
 
 subj_collection_handle = get_collection_handle(db_handle, "subjects")
@@ -30,6 +32,7 @@ branch_collection_handle = get_collection_handle(db_handle, "branches")
 # createbranch()
 @csrf_protect
 @api_view(('POST',))
+@parser_classes([MultiPartParser,FormParser])
 def createSubj(request):
     if (request.method == 'POST'):
         data = request.data
@@ -45,6 +48,13 @@ def createSubj(request):
                         branch = ""
                     else:
                         branch = hod.branch
+                    syllabus_file = request.FILES['s_file']
+                    book_file = request.FILES['b_file']
+                    s_upload_link = upload(syllabus_file)
+                    b_upload_link = upload(book_file)
+                    if not s_upload_link :
+                        return Response({'error':f" not allowed only accept {', '.join(ext for ext in ['.pdf','.doc','.docx'])} "})
+                    
                     dict = {
                         "c_name":data['subj_name'],
                         "sem": data['sem'],
@@ -54,12 +64,15 @@ def createSubj(request):
                         "start_date":data['date'],
                         "weightage": data['weightage'],
                         "author_email":user.email,
-                        "author_name":user.name
+                        "author_name":user.name,
+                        "syllabus_link":s_upload_link,
+                        "book_link":b_upload_link,
+
                     }
                     sub = subj_collection_handle.insert_one(dict)
                     branch = branch_collection_handle.find_one_and_update(
                         {
-                            "branch": branch,"semester.id":data['sem']
+                            "branch": branch,"semester.id":int(data['sem'])
                         },
                     {'$push': {'semester.$.subjects': 
                     {"sub_name":data['subj_name'],
@@ -92,8 +105,9 @@ def addUnit(request):
                 is_teach = CustomUser.objects.get(email=request.user.email).is_teach
                 obj = subj_collection_handle.find_one({"_id": ObjectId(data['subj_id'])})
                 if is_teach and (obj['author_email']==user.email):
+                   
                     unitdict = {
-                        "u_name":"untitled topic",
+                        "u_name":data['u_name'],
                         "subtopics":[],
                         "subj_id": data['subj_id']
                     }
@@ -102,7 +116,7 @@ def addUnit(request):
                         {
                             "_id": ObjectId(data['subj_id'])
                         },
-                        {'$push': {'units': {"unit_id":str(unit.inserted_id),"u_name":"untitled_topic"}}}
+                        {'$push': {'units': {"unit_id":str(unit.inserted_id),"u_name":data['u_name']}}}
                     )
                     return Response({'success':f"add unit successfully,unit id:{unit.inserted_id}"})
                 else:
@@ -126,10 +140,19 @@ def addSubTopic(request):
                 is_teach = CustomUser.objects.get(email=request.user.email).is_teach
                 obj = subj_collection_handle.find_one({"units.unit_id": ObjectId(data['unit_id'])})
                 if is_teach and (obj['author_email']==user.email):
+                    file = request.FILES['file']
+                    ext = Path(file.name).suffix
+                    upload_link = upload(file)
+                    if not upload_link:
+                        return Response({'error':f"{ext} not allowed only accept {', '.join(ext for ext in ALLOWED_EXTENTIONS)} "})
+                    
                     topic_dict = {
                         "subtopic_name" : data['subtopic_name'],
+                        "video_link":[data['v_link']],
                         "link":[data['link']],
-                        "notes" : data['notes']
+                        "notes" : data['notes'],
+                        "upload_type":ext,
+                        "upload_link":upload_link
                     }
                     unit_collection_handle.find_one_and_update(
                         {
@@ -163,7 +186,6 @@ def getUnit(request,unit_id):
                     return Response(obj)
                 else:
                     return Response({'error':"Invalid request"})
-
             else:
                 return Response({'error':'You are not authenticated, please login first'})
         except Exception as e:
