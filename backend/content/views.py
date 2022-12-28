@@ -52,8 +52,10 @@ def createSubj(request):
                     book_file = request.FILES['b_file']
                     s_upload_link = upload(syllabus_file)
                     b_upload_link = upload(book_file)
+                    ext = Path(syllabus_file.name).suffix
+                    print(data)
                     if not s_upload_link :
-                        return Response({'error':f" not allowed only accept {', '.join(ext for ext in ['.pdf','.doc','.docx'])} "})
+                        return Response({'error':f"{ext} not allowed only accept {', '.join(ext for ext in ['.pdf','.doc','.docx'])} "})
                     dict = {
                         "c_name":data['subj_name'],
                         "sem": data['sem'],
@@ -138,14 +140,13 @@ def addSubTopic(request):
             isAuth = user.is_authenticated
             if isAuth:
                 is_teach = CustomUser.objects.get(email=request.user.email).is_teach
-                obj = subj_collection_handle.find_one({"units.unit_id": ObjectId(data['unit_id'])})
+                obj = subj_collection_handle.find_one({"units.unit_id": str(data['unit_id'])})
                 if is_teach and (obj['author_email']==user.email):
                     file = request.FILES['file']
                     ext = Path(file.name).suffix
                     upload_link = upload(file)
                     if not upload_link:
                         return Response({'error':f"{ext} not allowed only accept {', '.join(ext for ext in ALLOWED_EXTENTIONS)} "})
-                    
                     topic_dict = {
                         "subtopic_name" : data['subtopic_name'],
                         "video_link":[data['v_link']],
